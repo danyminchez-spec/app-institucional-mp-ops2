@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-institucional
+  namespace: default
+spec:
+  replicas: 2 # Alta disponibilidad
+  selector:
+    matchLabels:
+      app: app-institucional
+  template:
+    metadata:
+      labels:
+        app: app-institucional
+    spec:
+      containers:
+      - name: servidor
+        image: tu_usuario/app-institucional:v1.0.0 # <--- Esto es lo que ArgoCD monitorea
+        ports:
+        - containerPort: 80
