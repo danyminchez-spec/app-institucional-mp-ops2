@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-institucional-sync
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/TU_USUARIO/app-institucional-ops.git' # Tu repo de configuración
+    targetRevision: HEAD
+    path: k8s # La carpeta donde pusiste los YAMLs
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated: # Sincronización automática
+      prune: true # Borra cosas en K8s si las borras en Git
+      selfHeal: true # Si alguien toca K8s manualmente, Argo lo revierte
