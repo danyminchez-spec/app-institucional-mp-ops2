@@ -4,7 +4,7 @@ metadata:
   name: app-institucional
   namespace: default
 spec:
-  replicas: 2 # Alta disponibilidad
+  replicas: 3 # Alta disponibilidad
   selector:
     matchLabels:
       app: app-institucional
